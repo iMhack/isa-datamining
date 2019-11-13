@@ -18,7 +18,6 @@ url_course = "https://isa.epfl.ch/imoniteur_ISAP/!GEDPUBLICREPORTS.html?" \
 
 ww_b_list = ["1"]
 ww_i_reportmodel = ["66627699"]
-ww_x_MATIERE = ["", "%2A"] #MATIERE ID
 ww_c_langue = [""]
 ww_i_reportModelXsl = ["66627723", "66627727"] #htlm, xls
 ww_x_CLASSE = ["null"]
@@ -45,12 +44,12 @@ for year, year_name in tqdm(ww_x_PERIODE_ACAD):
         print(url_list)
         response = urllib.request.urlopen(url_list)
         webContent = str(response.read(), 'latin1')
-        page_splits = webContent.split("ww_x_MAT=")
+        page_splits = webContent.split("ww_x_MAT=")[1:-1]
 
         xs = []
 
         for k, split in enumerate(tqdm(page_splits)):
-            ww_x_MAT = [split[:split.index("\\")]]
+            ww_x_MAT = [split[:split.index("'")]]
             url_mat = url_course.format(ww_x_MAT[0], ww_x_CLASSE[0], ww_i_reportmodel[0], ww_x_MATIERE[0],
                                          year, ww_i_reportModelXsl[0], season)
             print("  {}".format(url_mat))
