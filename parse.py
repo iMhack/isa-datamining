@@ -50,7 +50,7 @@ class Element:
         return iter(self.content)
 
 
-class HTMLParser(HTMLParser):
+class Parser(HTMLParser):
     def __init__(self):
         super().__init__()
         self.root = Element("html", None)
@@ -76,7 +76,7 @@ class HTMLParser(HTMLParser):
 
 
 def parse(html):
-    parser = HTMLParser()
+    parser = Parser()
     parser.feed(html)
     if len(parser.root) == 0:
         return []
