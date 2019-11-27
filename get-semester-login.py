@@ -7,7 +7,7 @@ url_all_the_semesters = "http://isa.epfl.ch/imoniteur_ISAP/!GEDPUBLICREPORTS.fil
 ww_x_GPS=[]
 with session() as c:
     response = c.get(url_all_the_semesters)
-    page_splits = response.text.split("ww_x_GPS=")[6:7] #6:7 have already some datas. Full list at 2:-1
+    page_splits = response.text.split("ww_x_GPS=")[2:-1] #6:7 have already some datas. Full list at 2:-1
     for split in tqdm(page_splits):
         ww_x_GPS.append(split[:split.index("'")])
 
